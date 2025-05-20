@@ -199,7 +199,7 @@ def subset_input_dict2box(subset_dict, meta_dict):
             sub_x = coord.lalo2yx(None, subset_dict['subset_lon'])[1]
         else:
             sub_x = [0, width]
-    
+
         # Get subset box in y/x
         sub_x = sorted(sub_x)
         sub_y = sorted(sub_y)
@@ -210,13 +210,14 @@ def subset_input_dict2box(subset_dict, meta_dict):
     else:
         if subset_dict.get('subset_lat', None):
             geo_box = (subset_dict['subset_lon'][0], subset_dict['subset_lat'][1], subset_dict['subset_lon'][1], subset_dict['subset_lat'][0])
-            pix_box = coord.bbox_geo2radar(geo_box, buf=0)
+            #pix_box = coord.bbox_geo2radar(geo_box, buf=0)
+            pix_box = coord.bbox_geo2radar(geo_box)
         else:
             if subset_dict['subset_y']:
                 sub_y = subset_dict['subset_y']
             else:
                 sub_y = [0, length]
-        
+
             if subset_dict['subset_x']:
                 sub_x = subset_dict['subset_x']
             else:
